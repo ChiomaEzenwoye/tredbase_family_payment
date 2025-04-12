@@ -1,13 +1,13 @@
 package com.example.tred_base_test.dto;
 
-public class AuthRequest {
+public class AuthRequestdto {
     private String username;
     private String password;
 
-    public AuthRequest() {
+    public AuthRequestdto() {
     }
 
-    public AuthRequest(String username, String password) {
+    public AuthRequestdto(String username, String password) {
         this.username = username;
         this.password = password;
     }

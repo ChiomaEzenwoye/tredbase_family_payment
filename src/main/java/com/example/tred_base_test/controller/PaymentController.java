@@ -27,8 +27,6 @@ public class PaymentController {
         String token = authHeader.substring(7);  // Extracting the token part from "Bearer <token>"
         String username = jwtService.extractUsername(token);
 
-        // Optionally log the username for debugging/auditing purposes
-        System.out.println("Payment made by user: " + username);
 
         // Pass the username to the payment service so that the correct user's balance is updated
         paymentService.processPayment(request, username);

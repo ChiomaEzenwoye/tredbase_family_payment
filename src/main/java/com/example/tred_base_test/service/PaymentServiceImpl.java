@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .orElseThrow(() -> new RuntimeException("Parent not found"));
 
         // Ensure that the parent making the payment matches the username
-        if (!parent.getUserName().equals(username)) {
+        if (!parent.getUsername().equals(username)) {
             throw new RuntimeException("Unauthorized: This parent is not the one making the payment");
         }
 
@@ -63,7 +63,6 @@ public class PaymentServiceImpl implements PaymentService {
         student.setBalance(student.getBalance().add(paymentAmount));
         studentRepo.save(student);
 
-        // Optionally, log the payment made by the username
         log.info("Payment made by parent: {}", username);
     }
 

@@ -1,12 +1,12 @@
 package com.example.tred_base_test.jwt;
 
+import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,15 +19,14 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    // Marking userService as Lazy-loaded to avoid circular dependency during bean initialization
-    @Autowired
-    @Lazy
-    private UserService userService;
+    private final JwtTokenUtil jwtService;
+    private final UserService userService;
 
-    // You can also mark JwtTokenUtil as lazy if it causes a circular dependency
     @Autowired
-    @Lazy
-    private JwtTokenUtil jwtService;
+    public JwtAuthenticationFilter(JwtTokenUtil jwtService, UserService userService) {
+        this.jwtService = jwtService;
+        this.userService = userService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -38,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response); // Skip if no token
+            filterChain.doFilter(request, response); // skip if no token
             return;
         }
 
@@ -46,18 +45,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String username = jwtService.extractUsername(token);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userService.loadUserByUsername(username);
+            // ✅ Load your actual User entity
+            User user = userService.loadUserByUsername(username); // No cast needed anymore
 
-            if (jwtService.isTokenValid(token, userDetails.getUsername())) {
+            if (jwtService.isTokenValid(token, user.getUsername())) {
                 UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
+
         }
 
         filterChain.doFilter(request, response);

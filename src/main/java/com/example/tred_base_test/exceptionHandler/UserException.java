@@ -1,8 +1,8 @@
 package com.example.tred_base_test.exceptionHandler;
 
-public class UsernameAlreadyExistsException extends RuntimeException {
+public class UserException extends RuntimeException {
 
-    public UsernameAlreadyExistsException(String message) {
+    public UserException(String message) {
         super(message);
     }
 }

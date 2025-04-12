@@ -1,32 +1,35 @@
 package com.example.tred_base_test.controller;
 
+import com.example.tred_base_test.dto.AuthRequestdto;
 import com.example.tred_base_test.dto.RegisterRequestDto;
-import com.example.tred_base_test.model.User;
+import com.example.tred_base_test.dto.UserResponseDto;
 import com.example.tred_base_test.service.AuthService;
-import com.example.tred_base_test.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collections;
 
 @RestController
 public class AuthController {
-
-    private final UserService userService;
+    @Autowired
     private final AuthService authService;
 
-    public AuthController(UserService userService, AuthService authService) {
-        this.userService = userService;
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequestDto registerRequestDto) {
-        User registeredUser = userService.registerUser(registerRequestDto);
-        return ResponseEntity.ok(registeredUser);
+    public UserResponseDto register(@RequestBody RegisterRequestDto dto) {
+        return authService.register(dto);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody RegisterRequestDto loginRequest) {
-        String token = authService.login(loginRequest.getUsername(), loginRequest.getPassword());
-        return ResponseEntity.ok(token);
+    public ResponseEntity<?> login(@RequestBody AuthRequestdto dto) {
+        String token = authService.login(dto.getUsername(), dto.getPassword());
+        return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 }
+
