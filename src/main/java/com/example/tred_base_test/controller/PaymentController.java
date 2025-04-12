@@ -1,7 +1,7 @@
 package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.PaymentRequestDto;
-import com.example.tred_base_test.jwtConfig.JwtTokenUtil;
+import com.example.tred_base_test.security.JwtTokenUtil;
 import com.example.tred_base_test.serviceimpl.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

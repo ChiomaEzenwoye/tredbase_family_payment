@@ -3,7 +3,7 @@ package com.example.tred_base_test.serviceimpl;
 import com.example.tred_base_test.dto.RegisterRequestDto;
 import com.example.tred_base_test.dto.UserResponseDto;
 import com.example.tred_base_test.exceptionHandler.UserException;
-import com.example.tred_base_test.jwtConfig.JwtTokenUtil;
+import com.example.tred_base_test.security.JwtTokenUtil;
 import com.example.tred_base_test.model.Parent;
 import com.example.tred_base_test.model.Student;
 import com.example.tred_base_test.model.User;

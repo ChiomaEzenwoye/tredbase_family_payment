@@ -1,5 +1,5 @@
 
-package com.example.tred_base_test.jwtConfig;
+package com.example.tred_base_test.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

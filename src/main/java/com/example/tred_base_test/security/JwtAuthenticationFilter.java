@@ -1,4 +1,4 @@
-package com.example.tred_base_test.jwtConfig;
+package com.example.tred_base_test.security;
 
 import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.serviceimpl.UserService;

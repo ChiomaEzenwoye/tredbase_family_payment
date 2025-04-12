@@ -1,4 +1,4 @@
-package com.example.tred_base_test.jwtConfig;
+package com.example.tred_base_test.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
