@@ -1,12 +1,14 @@
-package com.example.tred_base_test.service;
+package com.example.tred_base_test.serviceimpl;
 
 import com.example.tred_base_test.dto.PaymentRequestDto;
+import com.example.tred_base_test.exceptionHandler.UserException;
 import com.example.tred_base_test.model.Parent;
 import com.example.tred_base_test.model.Payment;
 import com.example.tred_base_test.model.Student;
 import com.example.tred_base_test.repo.ParentRepo;
 import com.example.tred_base_test.repo.PaymentRepo;
 import com.example.tred_base_test.repo.StudentRepo;
+import com.example.tred_base_test.service.PaymentService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +33,16 @@ public class PaymentServiceImpl implements PaymentService {
     public void processPayment(PaymentRequestDto request, String username) {
         // Find the parent using the parent ID
         Parent parent = parentRepo.findById(request.getParentId())
-                .orElseThrow(() -> new RuntimeException("Parent not found"));
+                .orElseThrow(() -> new UserException("Parent not found"));
 
         // Ensure that the parent making the payment matches the username
         if (!parent.getUsername().equals(username)) {
-            throw new RuntimeException("Unauthorized: This parent is not the one making the payment");
+            throw new UserException("Unauthorized: This parent is not the one making the payment");
         }
 
         // Find the student associated with the payment
         Student student = studentRepo.findById(request.getStudentId())
-                .orElseThrow(() -> new RuntimeException("Student not found"));
+                .orElseThrow(() -> new UserException("Student not found"));
 
         BigDecimal paymentAmount = BigDecimal.valueOf(request.getPaymentAmount());
         BigDecimal feeRate = BigDecimal.valueOf(0.05); // 5% fee

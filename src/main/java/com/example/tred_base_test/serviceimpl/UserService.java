@@ -1,16 +1,14 @@
-package com.example.tred_base_test.service;
+package com.example.tred_base_test.serviceimpl;
 
 import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.repo.ParentRepo;
 import com.example.tred_base_test.repo.StudentRepo;
 import com.example.tred_base_test.repo.UserRepo;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Optional;
 
 @Service

@@ -1,4 +1,4 @@
-package com.example.tred_base_test.service;
+package com.example.tred_base_test.serviceimpl;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
 import com.example.tred_base_test.exceptionHandler.UserException;

@@ -2,7 +2,7 @@ package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
 import com.example.tred_base_test.model.Student;
-import com.example.tred_base_test.service.ParentService;
+import com.example.tred_base_test.serviceimpl.ParentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,4 +25,6 @@ public class ParentController {
         // Return the student in the response
         return ResponseEntity.status(HttpStatus.CREATED).body(student);
     }
+
+
 }

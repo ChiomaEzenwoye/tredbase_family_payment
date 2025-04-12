@@ -1,7 +1,7 @@
-package com.example.tred_base_test.jwt;
+package com.example.tred_base_test.jwtConfig;
 
 import com.example.tred_base_test.model.User;
-import com.example.tred_base_test.service.UserService;
+import com.example.tred_base_test.serviceimpl.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -45,8 +44,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String username = jwtService.extractUsername(token);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            // ✅ Load your actual User entity
-            User user = userService.loadUserByUsername(username); // No cast needed anymore
+            // Load your actual User entity
+            User user = userService.loadUserByUsername(username);
 
             if (jwtService.isTokenValid(token, user.getUsername())) {
                 UsernamePasswordAuthenticationToken authToken =

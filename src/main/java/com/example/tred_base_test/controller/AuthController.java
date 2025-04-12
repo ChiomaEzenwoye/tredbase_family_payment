@@ -1,9 +1,9 @@
 package com.example.tred_base_test.controller;
 
-import com.example.tred_base_test.dto.AuthRequestdto;
+import com.example.tred_base_test.dto.AuthRequestDto;
 import com.example.tred_base_test.dto.RegisterRequestDto;
 import com.example.tred_base_test.dto.UserResponseDto;
-import com.example.tred_base_test.service.AuthService;
+import com.example.tred_base_test.serviceimpl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequestdto dto) {
+    public ResponseEntity<?> login(@RequestBody AuthRequestDto dto) {
         String token = authService.login(dto.getUsername(), dto.getPassword());
         return ResponseEntity.ok(Collections.singletonMap("token", token));
     }

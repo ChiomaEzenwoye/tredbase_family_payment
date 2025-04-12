@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class PaymentRequestDto {
-
     private Long parentId;
     private Long studentId;
     private Double paymentAmount;
