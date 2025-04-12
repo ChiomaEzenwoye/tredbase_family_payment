@@ -2,7 +2,7 @@ package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
 import com.example.tred_base_test.model.Student;
-import com.example.tred_base_test.serviceimpl.ParentService;
+import com.example.tred_base_test.serviceImpl.ParentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

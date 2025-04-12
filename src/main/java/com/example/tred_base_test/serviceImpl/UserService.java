@@ -1,4 +1,4 @@
-package com.example.tred_base_test.serviceimpl;
+package com.example.tred_base_test.serviceImpl;
 
 import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.repo.ParentRepo;

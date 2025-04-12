@@ -2,7 +2,7 @@ package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.DepositResponse;
 import com.example.tred_base_test.model.User;
-import com.example.tred_base_test.serviceimpl.UserService;
+import com.example.tred_base_test.serviceImpl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

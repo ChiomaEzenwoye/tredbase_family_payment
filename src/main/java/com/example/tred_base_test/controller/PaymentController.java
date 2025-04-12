@@ -2,7 +2,7 @@ package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.PaymentRequestDto;
 import com.example.tred_base_test.security.JwtTokenUtil;
-import com.example.tred_base_test.serviceimpl.PaymentServiceImpl;
+import com.example.tred_base_test.serviceImpl.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     @Autowired
-    private PaymentServiceImpl paymentService;
+    private PaymentService paymentService;
 
     @Autowired
     private JwtTokenUtil jwtService;

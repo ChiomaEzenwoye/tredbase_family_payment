@@ -3,7 +3,7 @@ package com.example.tred_base_test.controller;
 import com.example.tred_base_test.dto.AuthRequestDto;
 import com.example.tred_base_test.dto.RegisterRequestDto;
 import com.example.tred_base_test.dto.UserResponseDto;
-import com.example.tred_base_test.serviceimpl.AuthService;
+import com.example.tred_base_test.serviceImpl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

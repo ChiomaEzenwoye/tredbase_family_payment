@@ -1,4 +1,4 @@
-package com.example.tred_base_test.serviceimpl;
+package com.example.tred_base_test.serviceImpl;
 
 import com.example.tred_base_test.dto.PaymentRequestDto;
 import com.example.tred_base_test.exceptionHandler.UserException;
@@ -8,7 +8,6 @@ import com.example.tred_base_test.model.Student;
 import com.example.tred_base_test.repo.ParentRepo;
 import com.example.tred_base_test.repo.PaymentRepo;
 import com.example.tred_base_test.repo.StudentRepo;
-import com.example.tred_base_test.service.PaymentService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.math.RoundingMode;
 
 @Service
 @Slf4j
-public class PaymentServiceImpl implements PaymentService {
+public class PaymentService implements com.example.tred_base_test.service.PaymentService {
     @Autowired
     private ParentRepo parentRepo;
 

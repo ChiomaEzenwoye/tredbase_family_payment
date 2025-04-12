@@ -1,4 +1,4 @@
-package com.example.tred_base_test.serviceimpl;
+package com.example.tred_base_test.serviceImpl;
 
 import com.example.tred_base_test.dto.RegisterRequestDto;
 import com.example.tred_base_test.dto.UserResponseDto;

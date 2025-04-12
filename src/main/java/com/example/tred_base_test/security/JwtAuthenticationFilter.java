@@ -1,7 +1,7 @@
 package com.example.tred_base_test.security;
 
 import com.example.tred_base_test.model.User;
-import com.example.tred_base_test.serviceimpl.UserService;
+import com.example.tred_base_test.serviceImpl.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
