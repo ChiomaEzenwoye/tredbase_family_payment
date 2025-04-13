@@ -2,9 +2,11 @@ package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
 import com.example.tred_base_test.model.Student;
+import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.serviceImpl.ParentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,14 +19,12 @@ public class ParentController {
         this.parentService = parentService;
     }
 
-    @PostMapping("/{parentId}/students")
-    public ResponseEntity<Student> addStudent(@PathVariable Long parentId, @RequestBody StudentRequestDto studentDto) {
-        // Call the service method to add the student to the parent
-        Student student = parentService.addStudentToParent(parentId, studentDto);
-        
-        // Return the student in the response
+
+
+    @PostMapping("/parent/students")
+    public ResponseEntity<?> addStudent(@AuthenticationPrincipal User user, @RequestBody StudentRequestDto studentDto) {
+        Student student = parentService.addStudentToParent(user, studentDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(student);
     }
-
 
 }

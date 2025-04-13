@@ -4,6 +4,7 @@ import com.example.tred_base_test.dto.StudentRequestDto;
 import com.example.tred_base_test.exceptionHandler.UserException;
 import com.example.tred_base_test.model.Parent;
 import com.example.tred_base_test.model.Student;
+import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.repo.ParentRepo;
 import com.example.tred_base_test.repo.StudentRepo;
 import org.springframework.stereotype.Service;
@@ -21,24 +22,21 @@ public class ParentService {
     }
 
     @Transactional
-    public Student addStudentToParent(Long parentId, StudentRequestDto studentDto) {
-        // Retrieve the parent and associate them with the new student
-        Parent parent = parentRepo.findById(parentId)
+    public Student addStudentToParent(User user, StudentRequestDto studentDto) {
+        Parent parent = parentRepo.findByUserName(user.getUsername())
                 .orElseThrow(() -> new UserException("Parent not found"));
 
-        // Create the student and set its properties
         Student student = new Student();
         student.setName(studentDto.getName());
         student.setBalance(studentDto.getBalance());
 
-        // Add the student to the parent's set of students and vice versa
         student.getParents().add(parent);
         parent.getStudents().add(student);
 
-        // Save the student and parent
         studentRepo.save(student);
-        parentRepo.save(parent); // Save parent
+        parentRepo.save(parent);
 
         return student;
     }
+
 }
