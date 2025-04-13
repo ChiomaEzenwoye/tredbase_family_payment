@@ -1,6 +1,7 @@
 package com.example.tred_base_test.serviceImpl;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
+import com.example.tred_base_test.dto.StudentResponseDto;
 import com.example.tred_base_test.exceptionHandler.UserException;
 import com.example.tred_base_test.model.Parent;
 import com.example.tred_base_test.model.Student;
@@ -9,6 +10,8 @@ import com.example.tred_base_test.repo.ParentRepo;
 import com.example.tred_base_test.repo.StudentRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class ParentService {
@@ -22,8 +25,8 @@ public class ParentService {
     }
 
     @Transactional
-    public Student addStudentToParent(User user, StudentRequestDto studentDto) {
-        Parent parent = parentRepo.findByUserName(user.getUsername())
+    public StudentResponseDto addStudentToParent(Long userId, StudentRequestDto studentDto) {
+        Parent parent = parentRepo.findById(userId)
                 .orElseThrow(() -> new UserException("Parent not found"));
 
         Student student = new Student();
@@ -36,7 +39,12 @@ public class ParentService {
         studentRepo.save(student);
         parentRepo.save(parent);
 
-        return student;
+        StudentResponseDto studentResponseDto = new StudentResponseDto();
+        studentResponseDto.setId(student.getId());
+        studentResponseDto.setName(studentDto.getName());
+        studentResponseDto.setBalance(studentDto.getBalance());
+
+        return studentResponseDto;
     }
 
 }

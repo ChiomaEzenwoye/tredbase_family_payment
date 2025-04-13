@@ -1,6 +1,7 @@
 package com.example.tred_base_test.controller;
 
 import com.example.tred_base_test.dto.StudentRequestDto;
+import com.example.tred_base_test.dto.StudentResponseDto;
 import com.example.tred_base_test.model.Student;
 import com.example.tred_base_test.model.User;
 import com.example.tred_base_test.serviceImpl.ParentService;
@@ -21,10 +22,12 @@ public class ParentController {
 
 
 
-    @PostMapping("/parent/students")
-    public ResponseEntity<?> addStudent(@AuthenticationPrincipal User user, @RequestBody StudentRequestDto studentDto) {
-        Student student = parentService.addStudentToParent(user, studentDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(student);
+    @PostMapping("/students")
+    public ResponseEntity<StudentResponseDto> addStudentToParent(@AuthenticationPrincipal User user,
+                                                                 @RequestBody StudentRequestDto studentDto) {
+        StudentResponseDto student = parentService.addStudentToParent(user.getId(), studentDto);
+        return ResponseEntity.ok(student);
     }
+
 
 }
